@@ -12,9 +12,9 @@ const Header = () => {
           </h2>
         </div>
         <div className="flex space-x-4 items-center">
-          <Icons.inbox />
-          <Icons.notiBell />
-          <div className="flex space-x-2">
+          <Icons.inbox className="cursor-pointer" />
+          <Icons.notiBell className="cursor-pointer" />
+          <div className="flex space-x-2 cursor-pointer">
             <Icons.user className="bg-[#FFC145] rounded-full" />
             <div>
               <h1 className="text-sm font-semibold">Andrew</h1>
