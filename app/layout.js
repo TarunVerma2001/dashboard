@@ -5,10 +5,6 @@ import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
-// export const fontSans = FontSans({
-//   subsets: ["latin"],
-//   variable: "--font-sans",
-// });
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
