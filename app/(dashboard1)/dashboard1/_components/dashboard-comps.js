@@ -9,15 +9,71 @@ import SectionRow from "./section-row";
 import ProgressRange from "./progress-range";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { SidebarNav } from "./sidebar-nav";
+import { useRouter } from "next/navigation";
+import NavDrawer from "./nav-drawer";
+import TransactionSaction from "./transaction-saction";
 const DashboardComps = ({ title }) => {
+  const router = useRouter();
+
+  const section1Data = [
+    { title: "Grocery", icon: <Icons.cart />, price: "-326.800" },
+
+    { title: "Transportation", icon: <Icons.bus />, price: "-15.000" },
+
+    { title: "using", icon: <Icons.house />, price: "-185.570" },
+  ];
+  const section2Data = [
+    { title: "Food and Drinks", icon: <Icons.food />, price: "-156.800" },
+
+    { title: "Entertainment", icon: <Icons.video />, price: "-35.200" },
+  ];
+  const barChartData = [
+    { height: 35, active: false },
+    { height: 52, active: false },
+    { height: 44, active: false },
+    { height: 27, active: false },
+    { height: 35, active: false },
+    { height: 30, active: false },
+    { height: 44, active: false },
+    { height: 27, active: false },
+    { height: 35, active: false },
+    { height: 52, active: false },
+    { height: 44, active: false },
+    { height: 27, active: false },
+    { height: 35, active: false },
+    { height: 30, active: false },
+    { height: 44, active: false },
+    { height: 27, active: false },
+    { height: 35, active: false },
+    { height: 52, active: false },
+    { height: 44, active: false },
+    { height: 27, active: false },
+    { height: 35, active: false },
+    { height: 60, active: true },
+    { height: 44, active: false },
+  ];
+
   return (
     <div>
-      <div className="h-full grid grid-cols-3">
-        <div className="col-span-2 py-[60px] px-[100px] bg-[#fff] rounded-l-3xl">
+      <div className="h-full  grid lg:grid-cols-3">
+        <div className="lg:col-span-2 py-[30px] md:py-[60px] px-[30px] md:px-[100px] bg-[#fff] md:rounded-t-3xl lg:rounded-t-0   lg:rounded-l-3xl  overflow-x-scroll">
           <div className=" flex flex-col space-y-10">
             <div>
-              <div className="flex justify-between items-baseline">
-                <h1 className="text-[40px] font-semibold text-[#262A41]">
+              <div className="flex justify-between items-start md:items-baseline ">
+                <h1 className="text-[30px] md:text-[40px] font-semibold text-[#262A41]">
                   {title}
                 </h1>
                 <div className="flex items-center space-x-2">
@@ -41,80 +97,30 @@ const DashboardComps = ({ title }) => {
                   <div className="cursor-pointer">
                     <Icons.plus />
                   </div>
+                  <NavDrawer>
+                    <div className="md:hidden">
+                      <HamburgerMenuIcon width={24} height={24} />
+                    </div>
+                  </NavDrawer>
                 </div>
               </div>
               <h2 className="text-[#101010] opacity-50">01 - 25 March, 2020</h2>
             </div>
 
             {/* Chart */}
-            <div className="">
-              <BarChart
-                heights={[
-                  { height: 35, active: false },
-                  { height: 52, active: false },
-                  { height: 44, active: false },
-                  { height: 27, active: false },
-                  { height: 35, active: false },
-                  { height: 30, active: false },
-                  { height: 44, active: false },
-                  { height: 27, active: false },
-                  { height: 35, active: false },
-                  { height: 52, active: false },
-                  { height: 44, active: false },
-                  { height: 27, active: false },
-                  { height: 35, active: false },
-                  { height: 30, active: false },
-                  { height: 44, active: false },
-                  { height: 27, active: false },
-                  { height: 35, active: false },
-                  { height: 52, active: false },
-                  { height: 44, active: false },
-                  { height: 27, active: false },
-                  { height: 35, active: false },
-                  { height: 60, active: true },
-                  { height: 44, active: false },
-                ]}
-              />
+            <div className="overflow-x-scroll">
+              <BarChart heights={barChartData} />
             </div>
 
-            <div className="flex flex-col space-y-4">
-              <SectionHead title={"Today"} />
-              <Separator />
-
-              <SectionRow
-                title={"Grocery"}
-                icon={<Icons.cart />}
-                price={"-326.800"}
-              />
-              <SectionRow
-                title={"Transportation"}
-                icon={<Icons.bus />}
-                price={"-15.000"}
-              />
-              <SectionRow
-                title={"using"}
-                icon={<Icons.house />}
-                price={"-185.570"}
-              />
-            </div>
-            <div className="flex flex-col space-y-4">
-              <SectionHead title={"Monday 23 March, 2020"} />
-              <Separator />
-
-              <SectionRow
-                title={"Food and Drinks"}
-                icon={<Icons.food />}
-                price={"-156.800"}
-              />
-              <SectionRow
-                title={"Entertainment"}
-                icon={<Icons.video />}
-                price={"-35.200"}
-              />
-            </div>
+            {/* Transaction Data */}
+            <TransactionSaction title={"Today"} data={section1Data} />
+            <TransactionSaction
+              title={"Monday 23 March, 2020"}
+              data={section2Data}
+            />
           </div>
         </div>
-        <div className="bg-[#F9FAFC] py-[76px] px-[50px] rounded-r-3xl grid gap-16">
+        <div className="bg-[#F9FAFC] py-[76px] px-[50px] rounded  md:rounded-b-3xl lg:rounded-r-3xl grid gap-16">
           <div className="flex flex-col space-y-8">
             <h1 className="text-[20px] text-[#262A41] font-normal">
               Where your money go?

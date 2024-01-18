@@ -10,8 +10,8 @@ const sidebarNavItems = [
     href: "/dashboard1",
   },
   {
-    title: "Expences",
-    href: "/dashboard1/expences",
+    title: "Expenses",
+    href: "/dashboard1/expenses",
   },
   {
     title: "Wallets",
@@ -35,8 +35,8 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="h-full bg-[#101010] ">
       <main className="min-h-screen  ">
-        <div className="flex min-h-screen bg-[#101010] flex-row rounded-3xl space-x-12 p-[20px]">
-          <aside className="p-8 w-1/5">
+        <div className="flex min-h-screen bg-[#101010] flex-row md:rounded-3xl md:space-x-12 md:p-[20px]">
+          <aside className="py-8 lg:p-8 w-1/5 hidden md:block">
             <div className="pb-4">
               <div className="w-[105px] p-4">
                 <AspectRatio ratio={1 / 1}>

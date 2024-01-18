@@ -22,7 +22,7 @@ const Banner = () => {
           Application designed using NextJs and Shadcn UI
         </h2>
       </div>
-      <div className="flex space-x-8">
+      <div className="flex flex-col space-y-8 md:space-y-0 md:flex-row space-x-8">
         <div className="flex flex-col space-y-4 items-center">
           <Button onClick={() => router.push("/dashboard1")}>
             Dashboard 1
